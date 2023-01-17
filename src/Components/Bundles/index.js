@@ -18,16 +18,27 @@ import { Input, Label } from 'reactstrap';
 function Bundles() {
 
     const [categoryName, setCategoryName] = useState('');
+    const [username, setUsername] = useState('');
     const [bundlesData, setBundlesData] = useState([]);
     const [createBundleModalOpened, setCreateBundleModalOpened] = useState(false);
+    const [editImageModalOpened, setEditImageModalOpened] = useState(false);
+    const [addInfluencerModalOpened, setAddInfluencerModalOpened] = useState(false);
     const [newBundleCreated, setNewBundleCreated] = useState(false);
+    const [suggestions, setSuggestions] = useState([]);
+    const [suggestionIndex, setSuggestionIndex] = useState(0);
+    const [suggestionsActive, setSuggestionsActive] = useState(false);
+    const [basketToBeAdded, setBasketToBeAdded] = useState('');
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [basketToImageAdded, setBasketToImageAdded] = useState('');
+
+
+    const token = localStorage.getItem('token')
 
     const handleAddBundle = () => {
         setCreateBundleModalOpened(true);
     }
 
     const createBundle = () => {
-        let token = localStorage.getItem('token');
         let url = `http://13.234.29.72:4000/createCategorizedBasket`;
         fetch((url), {
             method: 'POST',
@@ -47,15 +58,17 @@ function Bundles() {
             })
     }
 
-    const handleAddInfluencer = () => {
-
+    const handleAddInfluencer = (item) => {
+        setBasketToBeAdded(item.categoryName)
+        setAddInfluencerModalOpened(true);
     }
 
-    const handleEditImage = () => {
-
+    const handleEditImage = (item) => {
+        setBasketToImageAdded(item.categoryName)
+        setEditImageModalOpened(true)
     }
 
-    useEffect(() => {
+    const fetchBundleDetails = () => {
         let url = `http://13.234.29.72:4000/showCategorizedBasket`;
         fetch(url)
             .then((res) => {
@@ -64,7 +77,108 @@ function Bundles() {
                         setBundlesData(data)
                     })
             })
-    }, [newBundleCreated])
+    }
+
+    const handleChange = (e) => {
+        const query = e.target.value.toLowerCase();
+        setUsername(query);
+        if (query.length > 1) {
+            let url = `http://13.234.29.72:4000/filterUsers?username=${query}`
+            fetch(url)
+                .then((data) => {
+                    data.json()
+                        .then((res) => {
+                            setSuggestions(res)
+                        })
+                })
+            setSuggestionsActive(true);
+        } else {
+            setSuggestionsActive(false);
+        }
+    };
+
+    const handleClick = (e) => {
+        setUsername(e.target.innerText);
+        setSuggestions([]);
+        setSuggestionsActive(false);
+    };
+
+    const Suggestions = () => {
+        return (
+            <>
+                <div className="suggestions row no-gutters" style={{ textAlign: 'initial' }}>
+                    <div className='col-lg-10 col-md-8 col-sm-6 col-xs-6 col-6'>
+                        <div style={{
+                            margin: '0.313rem', padding: 0, fontFamily: 'Noto Sans',
+                            fontStyle: 'normal',
+                            fontWeight: 700,
+                            fontSize: '1.125rem',
+                            lineHeight: '1rem',
+                            color: 'rgba(0, 0, 0, 0.7)'
+                        }}>Influencers</div>
+                        {suggestions.map((suggestion, index) => {
+                            return (
+                                <div
+                                    className={index === suggestionIndex ? "active" : ""}
+                                    key={index}
+                                    onClick={handleClick}
+                                >
+                                    {suggestion.username}
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </>
+        );
+    };
+
+    const addInfluencer = (username) => {
+        let categoryName = basketToBeAdded;
+        let url = `http://13.234.29.72:4000/addInfluencersToBasket`;
+        fetch((url), {
+            method: 'POST',
+            body: JSON.stringify({ username, categoryName }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+                'x-access-token': token
+            }
+        })
+            .then((res) => {
+                res.json()
+                    .then((data) => {
+                        setUsername('')
+                        setAddInfluencerModalOpened(false)
+                        // setBasketToBeAdded('')
+                    })
+            })
+    }
+
+    const uploadImage = () => {
+        const data = new FormData();
+        data.append('image', selectedImage);
+        // data.append('file_attachment', selectedImage);
+        console.log(data);
+        let url = `http://13.234.29.72:4000/addImageToBasket?categoryName=${basketToImageAdded}`;
+        fetch((url), {
+            method: 'POST',
+            body: data,
+            headers: {
+                'x-access-token': token,
+            }
+        })
+            .then((data) => {
+                data.json()
+                    .then((response) => {
+                        setBasketToImageAdded('')
+                        setEditImageModalOpened(false)
+                    })
+            })
+    }
+
+    useEffect(() => {
+        fetchBundleDetails();
+    }, [newBundleCreated, addInfluencerModalOpened, editImageModalOpened])
 
     return (
         <>
@@ -79,37 +193,37 @@ function Bundles() {
                         </div>
                     </div>
                     <div className='row no-gutters main_pane_container'>
-                        {bundlesData[0] ?
-                            <div className='main_pane_content'>
-                                <div className='top_lane'>
-                                    <Button className='add_btn' onClick={handleAddBundle}>Create Bundle</Button>
-                                    {
-                                        createBundleModalOpened === true ?
-                                            <div className='overlay'>
-                                                <div className='bundle_section row no-gutters'>
-                                                    <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                                                        <Label>
-                                                            Add New Bundle
-                                                        </Label>
-                                                    </div>
-                                                    <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
-                                                        <Input className='input_bundlename' placeholder='Bundle Name' value={categoryName} onChange={(e) => { setCategoryName(e.target.value) }} />
-                                                    </div>
-                                                    <div className='btn_lane row no-gutters'>
-                                                        <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6'>
-                                                            <Button className='add_bundle_btn' onClick={createBundle}>Create</Button>
-                                                        </div>
-                                                        <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6'>
-                                                            <Button className='cancel_btn' onClick={() => { setCreateBundleModalOpened(!createBundleModalOpened) }}>Cancel</Button>
-                                                        </div>
-                                                    </div>
+                        <div className='top_lane'>
+                            <Button className='add_btn' onClick={handleAddBundle}>Create Bundle</Button>
+                            {
+                                createBundleModalOpened === true ?
+                                    <div className='overlay'>
+                                        <div className='bundle_section row no-gutters'>
+                                            <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                                                <Label>
+                                                    Add New Bundle
+                                                </Label>
+                                            </div>
+                                            <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
+                                                <Input className='input_bundlename' placeholder='Bundle Name' value={categoryName} onChange={(e) => { setCategoryName(e.target.value) }} />
+                                            </div>
+                                            <div className='btn_lane row no-gutters'>
+                                                <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6'>
+                                                    <Button className='add_bundle_btn' onClick={createBundle}>Create</Button>
+                                                </div>
+                                                <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6'>
+                                                    <Button className='cancel_btn' onClick={() => { setCreateBundleModalOpened(!createBundleModalOpened) }}>Cancel</Button>
                                                 </div>
                                             </div>
-                                            :
-                                            null
-                                    }
-                                </div>
-                                <div className='middle_main_pane'>
+                                        </div>
+                                    </div>
+                                    :
+                                    null
+                            }
+                        </div>
+                        {bundlesData[0] ?
+                            <div className='main_pane_content'>
+                                <div className='middle_main_pane row no-gutters'>
                                     <TableContainer component={Paper} className='table_paper'>
                                         <Table stickyHeader className="table_container" >
                                             <TableHead className='table_head'>
@@ -135,8 +249,61 @@ function Bundles() {
                                                                     {item.basketInfluencersCount}
                                                                 </TableCell>
                                                                 <TableCell className='table_body_value' align="center">
-                                                                    <FcEditImage className='table_icons' onClick={handleEditImage} />
-                                                                    <IoMdPersonAdd className='table_icons' onClick={handleAddInfluencer} />
+                                                                    <FcEditImage className='table_icons' onClick={() => { handleEditImage(item) }} />
+                                                                    <IoMdPersonAdd className='table_icons' onClick={() => { handleAddInfluencer(item) }} />
+                                                                    {
+                                                                        editImageModalOpened === true ?
+                                                                            basketToImageAdded === item.categoryName ?
+                                                                                <div className='overlay'>
+                                                                                    <div className='bundle_section row no-gutters' style={{ textAlign: 'initial' }}>
+                                                                                        <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                                                                                            <Label>
+                                                                                                Edit Basket's Image
+                                                                                            </Label>
+                                                                                        </div>
+                                                                                        <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12' style={{ marginTop: '1rem' }}>
+                                                                                            <Input type='file' onChange={(event) => setSelectedImage(event.target.files[0])} />
+                                                                                        </div>
+                                                                                        <div className='btn_lane row no-gutters'>
+                                                                                            <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6'>
+                                                                                                <Button className='add_bundle_btn' onClick={() => { uploadImage(item) }}>Upload</Button>
+                                                                                            </div>
+                                                                                            <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6'>
+                                                                                                <Button className='cancel_btn' onClick={() => { setEditImageModalOpened(!editImageModalOpened) }}>Cancel</Button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                :
+                                                                                null
+                                                                            : null
+                                                                    }
+                                                                    {
+                                                                        addInfluencerModalOpened === true ?
+                                                                            <div className='overlay'>
+                                                                                <div className='bundle_section row no-gutters' style={{ textAlign: 'initial' }}>
+                                                                                    <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                                                                                        <Label>
+                                                                                            Add New Influencer
+                                                                                        </Label>
+                                                                                    </div>
+                                                                                    <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
+                                                                                        <Input className='input_bundlename' placeholder='Influencer username' value={username} onChange={handleChange} />
+                                                                                        {suggestionsActive && <Suggestions />}
+                                                                                    </div>
+                                                                                    <div className='btn_lane row no-gutters'>
+                                                                                        <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6'>
+                                                                                            <Button className='add_bundle_btn' onClick={() => { addInfluencer(username) }}>Add</Button>
+                                                                                        </div>
+                                                                                        <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6'>
+                                                                                            <Button className='cancel_btn' onClick={() => { setAddInfluencerModalOpened(!addInfluencerModalOpened) }}>Cancel</Button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            :
+                                                                            null
+                                                                    }
                                                                 </TableCell>
                                                             </TableRow>
                                                         </>

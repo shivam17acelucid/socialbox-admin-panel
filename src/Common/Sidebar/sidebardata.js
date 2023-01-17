@@ -16,7 +16,7 @@ export const SidebarData = [
         cName: 'nav-text',
     },
     {
-        title: 'AddInfluencer',
+        title: 'Add Creator',
         path: '/addInfluencer',
         icon: <AiIcons.AiFillCalculator />,
         cName: 'nav-text'
