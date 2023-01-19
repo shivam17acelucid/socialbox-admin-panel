@@ -15,17 +15,99 @@ html {
     .cost_content {
         overflow-y: scroll;
         height: 100vh;
+        overflow-x: hidden;
 
         .main_pane_container {
             background: #F8F8F8;
 
             .main_pane_content {
-                background: #FFFFFF;
-                border: 0.063rem solid rgba(0, 0, 0, 0.2);
-                border-radius: 0.313rem;
-                margin: 2rem;
-                height: 100vh;
-                width: 100%;
+                padding: 2rem;
+
+                .form_container {
+                    @media (max-width: 700px) {
+                        margin-top: 1rem;
+                    }
+
+                    background: #FFFFFF;
+                    border: 0.063rem solid rgba(0, 0, 0, 0.2);
+                    border-radius: 0.313rem;
+                    margin-top: 1.25rem;
+                    width: 100%;
+
+                    .form_title {
+                        margin: 0.5rem 1rem;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 1rem;
+                        line-height: 1.188rem;
+                        color: rgba(0, 0, 0, 0.7);
+                    }
+
+                    svg {
+                        cursor: pointer;
+                    }
+
+                    .form {
+                        margin: 0 2.5rem;
+
+                        Label {
+                            color: #000;
+                            font-family: 'Noto Sans';
+                            font-size: 0.8rem;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 1.375rem;
+                        }
+
+                        Input {
+                            @media (max-width: 600px) {
+                                width: 100%;
+                            }
+
+                            background: #fff;
+                            border: 0.063rem solid rgba(0, 0, 0, .2);
+                            border-radius: 0.313rem;
+                            box-sizing: border-box;
+                            // color: rgba(0, 0, 0, .2);
+                            color: #000;
+                            font-family: 'Noto Sans';
+                            font-size: .75rem;
+                            font-style: italic;
+                            font-weight: 400;
+                            line-height: 1rem;
+                            height: 1.5rem;
+                        }
+
+                        .dropdown_input {
+                            width: 100%;
+                        }
+
+                        .form_pane_2 {
+                            margin-top: 1rem;
+                        }
+
+                        .form_pane_3 {
+                            margin-top: 1rem;
+                        }
+
+                        .update_btn_pane {
+                            margin: 1rem 0;
+
+                            .update_btn {
+                                background: #7662dc;
+                                border-radius: 0.188rem;
+                                color: #fff;
+                                font-family: 'Noto sans';
+                                font-size: .75rem;
+                                font-style: normal;
+                                font-weight: 700;
+                                height: 1.313rem;
+                                line-height: 1.313rem;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -87,3 +169,80 @@ html {
 //         max-width: 87.333333%;
 //     }
 // }
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.suggestions {
+    // @media (max-width: 1300px) {
+    //     width: 100%;
+    // }
+
+    // @media (max-width: 1000px) {
+    //     width: 64%;
+    // }
+
+    // @media (max-width: 500px) {
+    //     width: 50%;
+    // }
+
+    background: #FFFFFF;
+    border: 0.063rem solid RGB(0, 0, 0, 0.2);
+    box-shadow: 0 0.25rem 0.25rem RGB(0 0 0 / 25%);
+    border-radius: 0.313rem;
+    width: 55rem;
+    max-height: 15rem;
+    position: absolute;
+    z-index: 9999;
+    top: 100%;
+    overflow-y: scroll;
+    width: 100%;
+
+    .active {
+        @media (max-width: 1000px) {
+            margin-left: 0rem !important;
+            padding-left: 0.1rem;
+        }
+
+        @media (max-width: 500px) {
+            margin-left: 0rem !important;
+            padding-left: 0.1rem;
+        }
+
+        margin-left: 0.4rem;
+        padding: 1rem;
+        font-family: 'Noto Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 1.188rem;
+        color: rgba(0, 0, 0, 0.7);
+        cursor: pointer;
+    }
+
+    div {
+        @media (max-width: 1000px) {
+            margin-left: 0.2rem !important;
+            padding-left: 0.1rem;
+        }
+
+        @media (max-width: 500px) {
+            margin-left: 0rem !important;
+            padding-left: 0.1rem;
+        }
+
+        margin-left: 0.4rem;
+        padding-left: 1rem;
+        font-family: 'Noto Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 1.188rem;
+        color: rgba(0, 0, 0, 0.7);
+        cursor: pointer;
+        padding-bottom: 1rem;
+        overflow-wrap: break-word;
+    }
+}
