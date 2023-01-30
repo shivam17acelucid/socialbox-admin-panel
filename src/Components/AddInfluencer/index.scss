@@ -20,29 +20,99 @@ html {
             background: #F8F8F8;
 
             .main_pane_content {
-                @media (max-width: 700px) {
-                    margin: 0;
+                height: 100%;
+                width: 100%;
+                padding-bottom: 3rem;
+
+                .hashtag_pane {
+                    background: #FFFFFF;
+                    border: 0.063rem solid rgba(0, 0, 0, 0.2);
+                    border-radius: 0.313rem;
+                    padding: 1rem;
+                    margin-top: 2rem;
+
+                    Label {
+                        margin: 0.5rem 1rem;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 1rem;
+                        line-height: 1.188rem;
+                        color: rgba(0, 0, 0, 0.7);
+                    }
+
+                    .form {
+                        margin: 0.5rem 1rem;
+
+                        Input {
+                            background: #FFFFFF;
+                            border: 0.063rem solid rgba(0, 0, 0, 0.5);
+                            border-radius: 0.313rem;
+                            box-sizing: border-box;
+                            height: 2.25rem;
+                            margin-top: 0.5rem;
+                            margin-bottom: 0.5rem;
+                            font-family: 'Noto Sans';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 0.875rem;
+                            line-height: 1.188rem;
+                            color: rgba(0, 0, 0, 0.4);
+                            padding-left: 0.75rem;
+                        }
+                    }
+
+                    .btn_pane {
+                        margin: 0.5rem 1rem;
+                    }
+
+                    Button {
+                        background: #7662DC;
+                        border-radius: 0.188rem;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 0.75rem;
+                        line-height: 1rem;
+                        text-align: center;
+                        color: #FFFFFF;
+                        min-width: 8rem;
+                        height: 2.25rem;
+                        margin-top: 1rem;
+                    }
                 }
 
-                background: #FFFFFF;
-                border: 0.063rem solid rgba(0, 0, 0, 0.2);
-                border-radius: 0.313rem;
-                margin: 2rem;
-                height: 100vh;
-                width: 100%;
+                .csv_pane {
+                    background: #FFFFFF;
+                    border: 0.063rem solid rgba(0, 0, 0, 0.2);
+                    border-radius: 0.313rem;
+                    padding: 1rem;
+                    margin-top: 2rem;
+
+                    .btn_pane {
+                        margin: 0.5rem 1rem;
+                    }
+
+                    Button {
+                        background: #7662DC;
+                        border-radius: 0.188rem;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 0.75rem;
+                        line-height: 1rem;
+                        text-align: center;
+                        color: #FFFFFF;
+                        min-width: 8rem;
+                        height: 2.25rem;
+                        margin-top: 1rem;
+                    }
+                }
             }
         }
     }
 }
 
-
-
-.inline_loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
 .col-lg-2 {
     @media (min-width: 992px) {
@@ -91,3 +161,20 @@ html {
 //         max-width: 87.333333%;
 //     }
 // }
+
+.inline_loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    // .lds-ring {
+    //     height: 2rem;
+    //     width: 2rem;
+
+    //     div {
+    //         height: 2rem;
+    //         width: 2rem;
+    //     }
+    // }
+}

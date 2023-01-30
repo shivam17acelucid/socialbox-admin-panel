@@ -1054,6 +1054,23 @@ function Cost() {
                                     </div>
                                 </div>
                             </div>
+                            {/* <div className='form_container col-lg-10 col-md-12 col-sm-12 col-xs-12 col-12 mx-auto'>
+                                <div className='form_title col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6'>
+                                    Set Cost with CSV file
+                                </div>
+                                <div className='form'>
+                                    <div className='form_pane_1 row no-gutters' style={{ padding: '1rem' }}>
+                                        <div className='col-lg-3 col-md-3 col-sm-12 col-xs-12 col-12'>
+                                            <Label>
+                                                Select CSV File
+                                            </Label>
+                                        </div>
+                                        <div className='col-lg-3 col-md-3 col-sm-12 col-xs-12 col-12'>
+                                            <Input type='file' />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

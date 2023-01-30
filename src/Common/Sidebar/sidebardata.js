@@ -1,24 +1,23 @@
 import React, { useEffect } from "react";
-import * as AiIcons from 'react-icons/ai';
-import * as MdIcons from 'react-icons/md';
+import * as BiIcons from 'react-icons/bi';
 export const SidebarData = [
 
     {
         title: 'Bundles',
         path: `/bundles`,
-        icon: <AiIcons.AiFillHome />,
+        icon: <BiIcons.BiCoinStack />,
         cName: 'nav-text'
     },
     {
         title: 'Cost',
-        icon: <MdIcons.MdCompare />,
+        icon: <BiIcons.BiRupee />,
         path: "/cost",
         cName: 'nav-text',
     },
     {
         title: 'Add Creator',
         path: '/addInfluencer',
-        icon: <AiIcons.AiFillCalculator />,
+        icon: <BiIcons.BiAddToQueue />,
         cName: 'nav-text'
     },
 ]
