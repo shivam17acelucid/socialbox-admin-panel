@@ -117,7 +117,13 @@ function AddInfluencer() {
     const handleAddUsername = () => {
         setAddUsernameClicked(true)
         let url = `http://13.234.29.72:4000/testingproxies`;
-        fetch(url)
+        fetch((url), {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({ username })
+        })
             .then((res) => {
                 res.json()
                     .then((data) => {
