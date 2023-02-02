@@ -314,6 +314,19 @@ function AddInfluencer() {
                                             null
                                     }
                                 </div>
+                                <div className='row no-gutters' style={{ alignItems: 'center', marginLeft: '1rem' }}>
+                                    <div className='col-lg-3 col-md-4 col-sm-4 col-xs-4 col-4'>
+                                        <Button className='btn_4' onClick={handleAddInfluencers}>Add Influencer To Database</Button>
+                                    </div>
+                                    {
+                                        addDataBtnClicked === true ?
+                                            dataAdded === true ?
+                                                null
+                                                :
+                                                <div className='col-lg-3 col-md-4 col-sm-4 col-xs-4 col-4'>Adding..</div>
+                                            : null
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
