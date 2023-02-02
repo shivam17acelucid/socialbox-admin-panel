@@ -31,7 +31,7 @@ function AddInfluencer() {
     const handleFetchHahstag = () => {
         setAddBtnClicked(true);
         setHashtagsFetched(false);
-        let url = `http://13.234.29.72:4000/searchbyhashtag?tagname=${hashtag}`;
+        let url = `http://65.0.110.147:4000/searchbyhashtag?tagname=${hashtag}`;
         fetch(url)
             .then((res) => {
                 res.json()
@@ -44,7 +44,7 @@ function AddInfluencer() {
 
     const handleFetchOwnerIds = () => {
         setFetchBtnClicked(true)
-        let url = `http://13.234.29.72:4000/getUsername`;
+        let url = `http://65.0.110.147:4000/getUsername`;
         fetch(url)
             .then((res) => {
                 res.json()
@@ -56,7 +56,7 @@ function AddInfluencer() {
 
     const handleFetchUsernames = () => {
         setFetchusernameBtnClicked(true)
-        let url = `http://13.234.29.72:4000/getprofiledata`;
+        let url = `http://65.0.110.147:4000/getprofiledata`;
         fetch(url)
             .then((res) => {
                 res.json()
@@ -68,7 +68,7 @@ function AddInfluencer() {
 
     const handleAddInfluencers = () => {
         setAddDataBtnClicked(true)
-        let url = `http://13.234.29.72:4000/getInfluencersDetails`;
+        let url = `http://65.0.110.147:4000/getInfluencersDetails`;
         fetch(url)
             .then((res) => {
                 res.json()
@@ -82,7 +82,7 @@ function AddInfluencer() {
         setAddCsvDataClicked(true)
         const data = new FormData();
         data.append('csv', selectedCsvForAddition);
-        let url = `http://13.234.29.72:4000/uploadcreatorcsv`;
+        let url = `http://65.0.110.147:4000/uploadcreatorcsv`;
         fetch((url), {
             method: 'POST',
             body: data,
@@ -100,7 +100,7 @@ function AddInfluencer() {
         setAddCsvDetailClicked(true)
         const data = new FormData();
         data.append('csv', selectedCsv);
-        let url = `http://13.234.29.72:4000/updateCreatorsDetails`;
+        let url = `http://65.0.110.147:4000/updateCreatorsDetails`;
         fetch((url), {
             method: 'PUT',
             body: data,
@@ -116,7 +116,7 @@ function AddInfluencer() {
 
     const handleAddUsername = () => {
         setAddUsernameClicked(true)
-        let url = `http://13.234.29.72:4000/testingproxies`;
+        let url = `http://65.0.110.147:4000/testingproxies`;
         fetch((url), {
             method: 'POST',
             headers: {
