@@ -318,87 +318,70 @@ function Cost() {
     }
 
     const fetchBasicRate = () => {
-        let url = `http://65.0.110.147:4000/getFilteredResults?inputField=&limit=20&skip=0`
+        let url = `http://65.0.110.147:4000/getBasicRate`;
         fetch(url)
             .then((res) => {
                 res.json()
                     .then((data) => {
-                        for (let i = 0; i < data.result.length; i++) {
-                            if (data.result[i].costFactorReel.maxCostper1KFollowersForReel) {
-                                setMinCostPerFollowerReel(data.result[i].costFactorReel.minCostPer1kFollowersForReel);
-                                setMaxCostPerFollowerReel(data.result[i].costFactorReel.maxCostper1KFollowersForReel);
-                                setMinCostPerLikeReel(data.result[i].costFactorReel.minCostPerLikeForReel);
-                                setMaxCostPerLikeReel(data.result[i].costFactorReel.maxCostperLikeForReel);
-                                setMinCostPerCommentReel(data.result[i].costFactorReel.minCostPerCommentForReel);
-                                setMaxCostPerCommentReel(data.result[i].costFactorReel.maxCostperCommentForReel);
-                                setBasicRateReel([data.result[i].costFactorReel])
-                                break;
-                            }
+                        console.log(data);
+                        if (data[0]?.costFactorReel) {
+                            setMinCostPerFollowerReel(data[0]?.costFactorReel?.minCostPer1kFollowersForReel);
+                            setMaxCostPerFollowerReel(data[0]?.costFactorReel?.maxCostper1KFollowersForReel);
+                            setMinCostPerLikeReel(data[0]?.costFactorReel?.minCostPerLikeForReel);
+                            setMaxCostPerLikeReel(data[0]?.costFactorReel?.maxCostperLikeForReel);
+                            setMinCostPerCommentReel(data[0]?.costFactorReel?.minCostPerCommentForReel);
+                            setMaxCostPerCommentReel(data[0]?.costFactorReel?.maxCostperCommentForReel);
+                            setBasicRateReel([data[0]?.costFactorReel])
                         }
 
-                        for (let i = 0; i < data.result.length; i++) {
-                            if (data.result[i].costFactorPosts.maxCostper1KFollowersForPosts) {
-                                setMinCostPerFollowerPost(data.result[i].costFactorPosts.minCostPer1kFollowersForPosts);
-                                setMaxCostPerFollowerPost(data.result[i].costFactorPosts.maxCostper1KFollowersForPosts);
-                                setMinCostPerLikePost(data.result[i].costFactorPosts.minCostPerLikeForPosts);
-                                setMaxCostPerLikePost(data.result[i].costFactorPosts.maxCostperLikeForPosts);
-                                setMinCostPerCommentPost(data.result[i].costFactorPosts.minCostPerCommentForPosts);
-                                setMaxCostPerCommentPost(data.result[i].costFactorPosts.maxCostperCommentForPosts);
-                                setBasicRatePost([data.result[i].costFactorPosts])
-                                break;
-                            }
+                        if (data[0]?.costFactorPosts) {
+                            setMinCostPerFollowerPost(data[0]?.costFactorPosts?.minCostPer1kFollowersForPosts);
+                            setMaxCostPerFollowerPost(data[0]?.costFactorPosts?.maxCostper1KFollowersForPosts);
+                            setMinCostPerLikePost(data[0]?.costFactorPosts?.minCostPerLikeForPosts);
+                            setMaxCostPerLikePost(data[0]?.costFactorPosts?.maxCostperLikeForPosts);
+                            setMinCostPerCommentPost(data[0]?.costFactorPosts?.minCostPerCommentForPosts);
+                            setMaxCostPerCommentPost(data[0]?.costFactorPosts?.maxCostperCommentForPosts);
+                            setBasicRatePost([data[0]?.costFactorPosts])
                         }
 
-                        for (let i = 0; i < data.result.length; i++) {
-                            if (data.result[i].costFactorStories.minCostPer1kFollowersForStory) {
-                                setMinCostPerFollowerStory(data.result[i].costFactorStories.minCostPer1kFollowersForStory);
-                                setMaxCostPerFollowerStory(data.result[i].costFactorStories.maxCostper1KFollowersForStory);
-                                setMinCostPerLikeStory(data.result[i].costFactorStories.minCostPerLikeForStory);
-                                setMaxCostPerLikeStory(data.result[i].costFactorStories.maxCostperLikeForStory);
-                                setMinCostPerCommentStory(data.result[i].costFactorStories.minCostPerCommentForStory);
-                                setMaxCostPerCommentStory(data.result[i].costFactorStories.maxCostperCommentForStory);
-                                setBasicRateStory([data.result[i].costFactorStories])
-                                break;
-                            }
+                        if (data[0]?.costFactorStories) {
+                            setMinCostPerFollowerStory(data[0]?.costFactorStories?.minCostPer1kFollowersForStory);
+                            setMaxCostPerFollowerStory(data[0]?.costFactorStories?.maxCostper1KFollowersForStory);
+                            setMinCostPerLikeStory(data[0]?.costFactorStories?.minCostPerLikeForStory);
+                            setMaxCostPerLikeStory(data[0]?.costFactorStories?.maxCostperLikeForStory);
+                            setMinCostPerCommentStory(data[0]?.costFactorStories?.minCostPerCommentForStory);
+                            setMaxCostPerCommentStory(data[0]?.costFactorStories?.maxCostperCommentForStory);
+                            setBasicRateStory([data[0]?.costFactorStories])
                         }
 
-                        for (let i = 0; i < data.result.length; i++) {
-                            if (data.result[i].costFactorSwipeUp.minCostPer1kFollowersForSwipeUpStory) {
-                                setMinCostPerFollowerSwipeupStory(data.result[i].costFactorSwipeUp.minCostPer1kFollowersForSwipeUpStory);
-                                setMaxCostPerFollowerSwipeupStory(data.result[i].costFactorSwipeUp.maxCostper1KFollowersForSwipeUpStory);
-                                setMinCostPerLikeSwipeupStory(data.result[i].costFactorSwipeUp.minCostPerLikeForSwipeUpStory);
-                                setMaxCostPerLikeSwipeupStory(data.result[i].costFactorSwipeUp.maxCostperLikeForSwipeUpStory);
-                                setMinCostPerCommentSwipeupStory(data.result[i].costFactorSwipeUp.minCostPerCommentForSwipeUpStory);
-                                setMaxCostPerCommentSwipeupStory(data.result[i].costFactorSwipeUp.maxCostperCommentForSwipeUpStory);
-                                setBasicRateSwipeupStory([data.result[i].costFactorSwipeUp])
-                                break;
-                            }
+                        if (data[0]?.costFactorSwipeUp) {
+                            setMinCostPerFollowerSwipeupStory(data[0]?.costFactorSwipeUp?.minCostPer1kFollowersForSwipeUpStory);
+                            setMaxCostPerFollowerSwipeupStory(data[0]?.costFactorSwipeUp?.maxCostper1KFollowersForSwipeUpStory);
+                            setMinCostPerLikeSwipeupStory(data[0]?.costFactorSwipeUp?.minCostPerLikeForSwipeUpStory);
+                            setMaxCostPerLikeSwipeupStory(data[0]?.costFactorSwipeUp?.maxCostperLikeForSwipeUpStory);
+                            setMinCostPerCommentSwipeupStory(data[0]?.costFactorSwipeUp?.minCostPerCommentForSwipeUpStory);
+                            setMaxCostPerCommentSwipeupStory(data[0]?.costFactorSwipeUp?.maxCostperCommentForSwipeUpStory);
+                            setBasicRateSwipeupStory([data[0]?.costFactorSwipeUp])
                         }
 
-                        for (let i = 0; i < data.result.length; i++) {
-                            if (data.result[i].costFactorVideo.minCostPer1kFollowersForVideo) {
-                                setMinCostPerFollowerVideo(data.result[i].costFactorVideo.minCostPer1kFollowersForVideo);
-                                setMaxCostPerFollowerVideo(data.result[i].costFactorVideo.maxCostper1KFollowersForVideo);
-                                setMinCostPerLikeVideo(data.result[i].costFactorVideo.minCostPerLikeForVideo);
-                                setMaxCostPerLikeVideo(data.result[i].costFactorVideo.maxCostperLikeForVideo);
-                                setMinCostPerCommentVideo(data.result[i].costFactorVideo.minCostPerCommentForVideo);
-                                setMaxCostPerCommentVideo(data.result[i].costFactorVideo.maxCostperCommentForVideo);
-                                setBasicRateVideo([data.result[i].costFactorVideo])
-                                break;
-                            }
+                        if (data[0]?.costFactorVideo) {
+                            setMinCostPerFollowerVideo(data[0]?.costFactorVideo?.minCostPer1kFollowersForVideo);
+                            setMaxCostPerFollowerVideo(data[0]?.costFactorVideo?.maxCostper1KFollowersForVideo);
+                            setMinCostPerLikeVideo(data[0]?.costFactorVideo?.minCostPerLikeForVideo);
+                            setMaxCostPerLikeVideo(data[0]?.costFactorVideo?.maxCostperLikeForVideo);
+                            setMinCostPerCommentVideo(data[0]?.costFactorVideo?.minCostPerCommentForVideo);
+                            setMaxCostPerCommentVideo(data[0]?.costFactorVideo?.maxCostperCommentForVideo);
+                            setBasicRateVideo([data[0]?.costFactorVideo])
                         }
 
-                        for (let i = 0; i < data.result.length; i++) {
-                            if (data.result[i].costFactorIgtv.minCostPer1kFollowersForIgtv) {
-                                setMinCostPerFollowerIgtv(data.result[i].costFactorIgtv.minCostPer1kFollowersForIgtv);
-                                setMaxCostPerFollowerIgtv(data.result[i].costFactorIgtv.maxCostper1KFollowersForIgtv);
-                                setMinCostPerLikeIgtv(data.result[i].costFactorIgtv.minCostPerLikeForIgtv);
-                                setMaxCostPerLikeIgtv(data.result[i].costFactorIgtv.maxCostperLikeForIgtv);
-                                setMinCostPerCommentIgtv(data.result[i].costFactorIgtv.minCostPerCommentForIgtv);
-                                setMaxCostPerCommentIgtv(data.result[i].costFactorIgtv.maxCostperCommentForIgtv);
-                                setBasicRateIgtv([data.result[i].costFactorIgtv])
-                                break;
-                            }
+                        if (data[0]?.costFactorIgtv) {
+                            setMinCostPerFollowerIgtv(data[0]?.costFactorIgtv?.minCostPer1kFollowersForIgtv);
+                            setMaxCostPerFollowerIgtv(data[0]?.costFactorIgtv?.maxCostper1KFollowersForIgtv);
+                            setMinCostPerLikeIgtv(data[0]?.costFactorIgtv?.minCostPerLikeForIgtv);
+                            setMaxCostPerLikeIgtv(data[0]?.costFactorIgtv?.maxCostperLikeForIgtv);
+                            setMinCostPerCommentIgtv(data[0]?.costFactorIgtv?.minCostPerCommentForIgtv);
+                            setMaxCostPerCommentIgtv(data[0]?.costFactorIgtv?.maxCostperCommentForIgtv);
+                            setBasicRateIgtv([data[0]?.costFactorIgtv])
                         }
                     })
             })
