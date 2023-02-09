@@ -243,7 +243,7 @@ function Bundles() {
                                                                     {item.categoryName}
                                                                 </TableCell>
                                                                 <TableCell className='table_body_value' align="center">
-                                                                    <img src={`http://65.0.110.147:4000/uploads/${item.image}`} className="category_image" />
+                                                                    <img src={`https://socialbox-bckt.s3.ap-south-1.amazonaws.com/Basket/${item.categoryName}/image.png`} className="category_image" />
                                                                 </TableCell>
                                                                 <TableCell className='table_body_value' align="center">
                                                                     {item.basketInfluencersCount}
