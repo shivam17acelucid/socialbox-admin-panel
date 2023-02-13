@@ -19,6 +19,7 @@ html {
         .social_logo {
             margin-top: 2rem;
             padding-left: 1rem;
+            width: 100%;
         }
 
         .welcome_heading {
@@ -45,28 +46,6 @@ html {
                 width: 10rem;
                 margin-top: 0 !important;
             }
-        }
-
-        .social_login_btn {
-            cursor: pointer;
-            box-sizing: border-box;
-            background: #FFFFFF;
-            display: flex;
-            text-align: center;
-            align-content: center;
-            justify-content: center;
-            align-items: center;
-            margin-top: 0.938rem;
-            border: 0.063rem solid #808080;
-            border-radius: 0.313rem;
-            width: 20rem;
-            height: 2.54rem;
-            font-family: 'Poppins';
-            font-style: normal;
-            font-weight: 500;
-            font-size: 1rem;
-            line-height: 1.5rem;
-            color: rgba(0, 0, 0, 0.4);
         }
 
         .login_form {
@@ -101,20 +80,27 @@ html {
                 box-sizing: border-box;
                 margin-top: 0.25rem;
                 margin-bottom: 0.25rem;
-                width: 20rem;
+                width: 100%;
                 height: 2.5rem;
                 padding-left: 1rem;
             }
 
             .show_image {
                 position: absolute;
-                bottom: 17.5rem;
                 z-index: 9999;
-                right: 13rem;
                 cursor: pointer;
+                margin-right: 1rem;
             }
 
             .form_forgot_text {
+                @media (max-width: 1000px) {
+                    font-size: 0.8rem;
+                }
+
+                @media (max-width: 460px) {
+                    font-size: 0.8rem;
+                }
+
                 font-family: 'Inter';
                 font-style: normal;
                 font-weight: 400;
@@ -122,31 +108,56 @@ html {
                 line-height: 1.188rem;
                 text-align: right;
                 color: #007DA8;
-                margin-left: 12rem;
                 cursor: pointer;
                 padding-top: 1.25rem;
             }
+        }
 
-            .login_btn {
-                margin-top: 2rem;
-                background: #7662DC;
-                border-radius: 0.313rem;
-                font-family: 'Inter';
-                font-style: normal;
-                font-size: 1.125rem;
-                line-height: 1.188rem;
-                text-align: center;
-                color: #FFFFFF;
-                border: 0.063rem solid #808080;
-                border-radius: 0.313rem;
-                box-sizing: border-box;
-                width: 20rem;
-                height: 2.5rem;
-                text-transform: none;
-            }
+        .login_btn {
+            margin-top: 2rem;
+            background: #7662DC;
+            border-radius: 0.313rem;
+            font-family: 'Inter';
+            font-style: normal;
+            font-size: 1.125rem;
+            line-height: 1.188rem;
+            text-align: center;
+            color: #FFFFFF;
+            border: 0.063rem solid #808080;
+            border-radius: 0.313rem;
+            box-sizing: border-box;
+            width: 100%;
+            height: 2.5rem;
+            text-transform: none;
+        }
+
+        .social_login_btn {
+            cursor: pointer;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            display: flex;
+            text-align: center;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0.938rem;
+            border: 0.063rem solid #808080;
+            border-radius: 0.313rem;
+            width: 100%;
+            height: 2.54rem;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            color: rgba(0, 0, 0, 0.4);
         }
 
         .signup_link {
+            @media (max-width: 460px) {
+                font-size: 0.8rem;
+            }
+
             margin-top: 3rem;
             font-family: 'Inter';
             font-style: normal;
@@ -158,6 +169,10 @@ html {
         }
 
         .signup_footer {
+            @media (max-width: 460px) {
+                font-size: 0.8rem;
+            }
+
             @media (max-width: 1280px) {
                 margin-top: 0.8rem;
             }
@@ -180,20 +195,28 @@ html {
             height: 50%;
 
             .right_pane_text {
+                @media (max-width: 600px) {
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 1rem;
+                    line-height: 2.25rem;
+                    margin-left: 1rem;
+                }
+
                 position: absolute;
                 top: 10%;
-                right: 25%;
                 font-family: 'Poppins';
                 font-style: normal;
                 font-weight: 500;
                 font-size: 1.5rem;
                 line-height: 2.25rem;
-
                 color: #000000;
             }
         }
 
         background-image: url(../../Assets/Images/signupbgimg.png);
+        background-position-y: top;
     }
 
 }

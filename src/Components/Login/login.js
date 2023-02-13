@@ -58,31 +58,41 @@ function Login() {
                 <div className="welcome_heading">
                     <img src={logo} className='social_logo' />
                 </div>
-                <div className="login_form">
-                    <input
-                        type='text'
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => { setEmail(e.target.value) }}
-                        className="registeration_fields"
-                    />
-                    <input
-                        type={passwordVisible === true ? 'text' : 'password'}
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => { setPassword(e.target.value) }}
-                        className="registeration_fields"
+                <div className="login_form row no-gutters">
+                    <div className="col-lg-6 col-md-8 col-sm-6 col-xs-6">
+                        <input
+                            type='text'
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => { setEmail(e.target.value) }}
+                            className="registeration_fields"
+                        />
+                    </div>
+                    <div className="col-lg-6 col-md-8 col-sm-6 col-xs-6" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                        <input
+                            type={passwordVisible === true ? 'text' : 'password'}
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => { setPassword(e.target.value) }}
+                            className="registeration_fields"
 
-                    />
-                    {/* <img src={show} alt='' height='16px' width='28px' className='show_image' onClick={showPassword} /> */}
-                    <span className="form_forgot_text">Forgot Password</span>
-                    <Button onClick={handleLogin} className='login_btn'>Log in</Button>
-                    <div className="social_login_btn">
+                        />
+                        <img src={show} alt='' height='16px' width='28px' className='show_image' onClick={showPassword} />
+                    </div>
+                    <div className="form_forgot_text col-lg-6 col-md-6 col-sm-6 col-xs-6">Forgot Password</div>
+                </div>
+                <div className="row no-gutters justify-content-center">
+                    <div className="col-lg-6 col-md-8 col-sm-6 col-xs-6">
+                        <Button onClick={handleLogin} className='login_btn'>Log in</Button>
+                    </div>
+                </div>
+                <div className="row no-gutters justify-content-center">
+                    <div className="social_login_btn col-lg-6 col-md-8 col-sm-6 col-xs-6">
                         <img src={google} height="0.875rem" /><span style={{ marginLeft: '0.75rem' }}>Log in with Google</span>
                     </div>
                 </div>
-                <div className="signup_link">Don't have an Account? <Link to='/signup'>Signup for free</Link></div>
-                <div className="signup_footer">
+                <div className="signup_link col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">Don't have an Account? <Link to='/signup'>Signup for free</Link></div>
+                <div className="signup_footer col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
                     ©︎ 2022 The Social Box. All rights reserved  |  Privacy policy
                 </div>
             </div>
@@ -94,8 +104,6 @@ function Login() {
                         <span style={{ display: 'block' }}>Drive sales through</span>
                         <span style={{ display: 'block' }}>content creators.</span>
                     </div>
-                </div>
-                <div className="right_pane_bottom">
                 </div>
 
             </div>
