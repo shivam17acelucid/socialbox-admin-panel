@@ -14,6 +14,7 @@ import '../Bundles/index.scss';
 import { FcEditImage } from 'react-icons/fc';
 import { IoMdPersonAdd } from 'react-icons/io';
 import { Input, Label } from 'reactstrap';
+import { MdDelete, MdEdit } from 'react-icons/md';
 
 function Bundles() {
 
@@ -30,6 +31,11 @@ function Bundles() {
     const [basketToBeAdded, setBasketToBeAdded] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
     const [basketToImageAdded, setBasketToImageAdded] = useState('');
+    const [basketDeleted, setBasketDeleted] = useState(false);
+    const [descriptionAdded, setDescriptionAdded] = useState(false);
+    const [editDescModalOpened, setEditDescModalOpened] = useState(false);
+    const [basketToDescAdded, setBasketToDescAdded] = useState(false);
+    const [description, setDescription] = useState('');
 
 
     const token = localStorage.getItem('token')
@@ -176,9 +182,42 @@ function Bundles() {
             })
     }
 
+    const handleDeleteBasket = (item) => {
+        let url = `http://65.0.110.147:4000/deleteBasket?categoryName=${item.categoryName}`;
+        fetch((url), {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+            .then((data) => {
+                setBasketDeleted(!basketDeleted);
+            })
+    }
+
+    const handleEditDescription = (item) => {
+        setBasketToDescAdded(item.categoryName)
+        setEditDescModalOpened(true)
+    }
+
+    const changeDesc = () => {
+        let url = `http://65.0.110.147:4000/editDescription?categoryName=${basketToDescAdded}`;
+        fetch((url), {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({ description })
+        })
+            .then((data) => {
+                setDescriptionAdded(!descriptionAdded);
+                setEditDescModalOpened(false)
+            })
+    }
+
     useEffect(() => {
         fetchBundleDetails();
-    }, [newBundleCreated, addInfluencerModalOpened, editImageModalOpened])
+    }, [newBundleCreated, addInfluencerModalOpened, editImageModalOpened, basketDeleted, descriptionAdded])
 
     return (
         <>
@@ -251,6 +290,8 @@ function Bundles() {
                                                                 <TableCell className='table_body_value' align="center">
                                                                     <FcEditImage className='table_icons' onClick={() => { handleEditImage(item) }} />
                                                                     <IoMdPersonAdd className='table_icons' onClick={() => { handleAddInfluencer(item) }} />
+                                                                    <MdDelete className='table_icons' onClick={() => { handleDeleteBasket(item) }} />
+                                                                    <MdEdit className='table_icons' onClick={() => { handleEditDescription(item) }} />
                                                                     {
                                                                         editImageModalOpened === true ?
                                                                             basketToImageAdded === item.categoryName ?
@@ -297,6 +338,31 @@ function Bundles() {
                                                                                         </div>
                                                                                         <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6'>
                                                                                             <Button className='cancel_btn' onClick={() => { setAddInfluencerModalOpened(!addInfluencerModalOpened) }}>Cancel</Button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            :
+                                                                            null
+                                                                    }
+                                                                    {
+                                                                        editDescModalOpened === true ?
+                                                                            <div className='overlay'>
+                                                                                <div className='bundle_section row no-gutters' style={{ textAlign: 'initial' }}>
+                                                                                    <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                                                                                        <Label>
+                                                                                            Add Description
+                                                                                        </Label>
+                                                                                    </div>
+                                                                                    <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12'>
+                                                                                        <Input className='input_bundlename' placeholder='Basket Description' value={description} onChange={(e) => { setDescription(e.target.value) }} />
+                                                                                    </div>
+                                                                                    <div className='btn_lane row no-gutters'>
+                                                                                        <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6'>
+                                                                                            <Button className='add_bundle_btn' onClick={() => { changeDesc(description) }}>Add</Button>
+                                                                                        </div>
+                                                                                        <div className='col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6'>
+                                                                                            <Button className='cancel_btn' onClick={() => { setEditDescModalOpened(!basketToDescAdded) }}>Cancel</Button>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
