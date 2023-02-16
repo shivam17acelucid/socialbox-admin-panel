@@ -27,6 +27,7 @@ function AddInfluencer() {
     const [username, setUsername] = useState('');
     const [addUsernameClicked, setAddUsernameClicked] = useState(false);
     const [usernameAdded, setUsernameAdded] = useState(false);
+    const [csvUsernameFetched, setCsvUsernameFetched] = useState(false);
 
     const handleFetchHahstag = () => {
         setAddBtnClicked(true);
@@ -133,6 +134,23 @@ function AddInfluencer() {
             })
     }
 
+    const handleAddCsvUsernames = () => {
+        setCsvUsernameFetched(true);
+        let url = `http://65.0.110.147:4000/fetchCsvUsernames`;
+        fetch((url), {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((res) => {
+                res.json()
+                    .then((data) => {
+                        setCsvUsernameFetched(false);
+                    })
+            })
+    }
+
     return (
         <>
             <div className='add_container row no-gutters'>
@@ -232,11 +250,20 @@ function AddInfluencer() {
                                     <div className='col-lg-3 col-md-4 col-sm-4 col-xs-4 col-4'>
                                         <Button onClick={handleAddInfluencerByCsv}>Submit</Button>
                                     </div>
+                                    <div className='col-lg-3 col-md-4 col-sm-4 col-xs-4 col-4'>
+                                        <Button onClick={handleAddCsvUsernames}>Fetch Csv Usernames</Button>
+                                    </div>
                                     {
                                         addCsvDataClicked === true ?
                                             csvDataAdded === true ?
                                                 null :
                                                 <div className='col-lg-3 col-md-4 col-sm-4 col-xs-4 col-4'>Adding...</div>
+                                            :
+                                            null
+                                    }
+                                    {
+                                        csvUsernameFetched === true ?
+                                            <div className='col-lg-3 col-md-4 col-sm-4 col-xs-4 col-4'>Adding...</div>
                                             :
                                             null
                                     }
