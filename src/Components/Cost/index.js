@@ -94,7 +94,7 @@ function Cost() {
         const query = e.target.value.toLowerCase();
         setUsername(query);
         if (query.length > 1) {
-            let url = `13.127.230.191:4000/filterUsers?username=${query}`
+            let url = `http://13.234.125.76:4000/filterUsers?username=${query}`
             fetch(url)
                 .then((data) => {
                     data.json()
@@ -145,7 +145,7 @@ function Cost() {
     };
 
     const handleUpdateCostOfUniqueInfluencer = () => {
-        let url = `13.127.230.191:4000/setInfluencerCost`;
+        let url = `http://13.234.125.76:4000/setInfluencerCost`;
         fetch((url), {
             method: 'PUT',
             headers: {
@@ -181,7 +181,7 @@ function Cost() {
         let minCostPerLikeForReel = minCostPerLikeReel;
         let maxCostperLikeForReel = maxCostPerLikeReel;
 
-        let url = `13.127.230.191:4000/setCalculateCostForReel`;
+        let url = `http://13.234.125.76:4000/setCalculateCostForReel`;
         fetch((url), {
             method: 'POST',
             headers: {
@@ -205,7 +205,7 @@ function Cost() {
         let minCostPerLikeForPosts = minCostPerLikePost;
         let maxCostperLikeForPosts = maxCostPerLikePost;
 
-        let url = `13.127.230.191:4000/setCalculateCostForPosts`;
+        let url = `http://13.234.125.76:4000/setCalculateCostForPosts`;
         fetch((url), {
             method: 'POST',
             headers: {
@@ -229,7 +229,7 @@ function Cost() {
         let minCostPerLikeForStory = minCostPerLikeStory;
         let maxCostperLikeForStory = maxCostPerLikeStory;
 
-        let url = `13.127.230.191:4000/setCalculateCostForStories`;
+        let url = `http://13.234.125.76:4000/setCalculateCostForStories`;
         fetch((url), {
             method: 'POST',
             headers: {
@@ -253,7 +253,7 @@ function Cost() {
         let minCostPerCommentForSwipeUpStory = minCostPerCommentSwipeupStory;
         let maxCostperCommentForSwipeUpStory = maxCostPerCommentSwipeupStory;
 
-        let url = `13.127.230.191:4000/setCalculateCostForSwipeupStories`;
+        let url = `http://13.234.125.76:4000/setCalculateCostForSwipeupStories`;
         fetch((url), {
             method: 'POST',
             headers: {
@@ -277,7 +277,7 @@ function Cost() {
         let minCostPerCommentForVideo = minCostPerCommentVideo;
         let maxCostperCommentForVideo = maxCostPerCommentVideo;
 
-        let url = `13.127.230.191:4000/setCalculateCostForVideos`;
+        let url = `http://13.234.125.76:4000/setCalculateCostForVideos`;
         fetch((url), {
             method: 'POST',
             headers: {
@@ -301,7 +301,7 @@ function Cost() {
         let minCostPerCommentForIgtv = minCostPerCommentIgtv;
         let maxCostperCommentForIgtv = maxCostPerCommentIgtv;
 
-        let url = `13.127.230.191:4000/setCalculateCostForIgtv`;
+        let url = `http://13.234.125.76:4000/setCalculateCostForIgtv`;
         fetch((url), {
             method: 'POST',
             headers: {
@@ -318,7 +318,7 @@ function Cost() {
     }
 
     const fetchBasicRate = () => {
-        let url = `13.127.230.191:4000/getBasicRate`;
+        let url = `http://13.234.125.76:4000/getBasicRate`;
         fetch(url)
             .then((res) => {
                 res.json()

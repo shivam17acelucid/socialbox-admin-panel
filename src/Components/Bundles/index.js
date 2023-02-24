@@ -45,7 +45,7 @@ function Bundles() {
     }
 
     const createBundle = () => {
-        let url = `13.127.230.191:4000/createCategorizedBasket`;
+        let url = `http://13.234.125.76:4000/createCategorizedBasket`;
         fetch((url), {
             method: 'POST',
             headers: {
@@ -75,7 +75,7 @@ function Bundles() {
     }
 
     const fetchBundleDetails = () => {
-        let url = `13.127.230.191:4000/showCategorizedBasket`;
+        let url = `http://13.234.125.76:4000/showCategorizedBasket`;
         fetch(url)
             .then((res) => {
                 res.json()
@@ -89,7 +89,7 @@ function Bundles() {
         const query = e.target.value.toLowerCase();
         setUsername(query);
         if (query.length > 1) {
-            let url = `13.127.230.191:4000/filterUsers?username=${query}`
+            let url = `http://13.234.125.76:4000/filterUsers?username=${query}`
             fetch(url)
                 .then((data) => {
                     data.json()
@@ -141,7 +141,7 @@ function Bundles() {
 
     const addInfluencer = (username) => {
         let categoryName = basketToBeAdded;
-        let url = `13.127.230.191:4000/addInfluencersToBasket`;
+        let url = `http://13.234.125.76:4000/addInfluencersToBasket`;
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ username, categoryName }),
@@ -165,7 +165,7 @@ function Bundles() {
         data.append('image', selectedImage);
         // data.append('file_attachment', selectedImage);
         console.log(data);
-        let url = `13.127.230.191:4000/addImageToBasket?categoryName=${basketToImageAdded}`;
+        let url = `http://13.234.125.76:4000/addImageToBasket?categoryName=${basketToImageAdded}`;
         fetch((url), {
             method: 'POST',
             body: data,
@@ -183,7 +183,7 @@ function Bundles() {
     }
 
     const handleDeleteBasket = (item) => {
-        let url = `13.127.230.191:4000/deleteBasket?categoryName=${item.categoryName}`;
+        let url = `http://13.234.125.76:4000/deleteBasket?categoryName=${item.categoryName}`;
         fetch((url), {
             method: 'PUT',
             headers: {
@@ -201,7 +201,7 @@ function Bundles() {
     }
 
     const changeDesc = () => {
-        let url = `13.127.230.191:4000/editDescription?categoryName=${basketToDescAdded}`;
+        let url = `http://13.234.125.76:4000/editDescription?categoryName=${basketToDescAdded}`;
         fetch((url), {
             method: 'PUT',
             headers: {
