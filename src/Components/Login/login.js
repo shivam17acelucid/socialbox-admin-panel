@@ -18,7 +18,7 @@ function Login() {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        const url = '13.234.125.76:4000/adminLogin';
+        const url = 'http://13.234.125.76:4000/adminLogin';
         fetch((url), {
             method: 'POST',
             body: JSON.stringify({ email, password }),
