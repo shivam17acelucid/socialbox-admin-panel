@@ -6,7 +6,7 @@ import * as FaIcons from 'react-icons/fa';
 import { IconContext } from "react-icons/lib";
 import { AiFillCaretDown } from 'react-icons/ai';
 import { AiFillCaretRight } from 'react-icons/ai';
-import logo from '../../Assets/Images/logo.png';
+import logo from '../../Assets/Images/inflyu.png';
 
 function Navbar() {
     const [sidebar, setSidebar] = useState(false);
